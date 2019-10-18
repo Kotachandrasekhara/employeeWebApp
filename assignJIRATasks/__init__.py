@@ -16,6 +16,7 @@ start_time = time.time()
 options = {'server': 'https://10.60.80.151'}
 
 
+
 def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
