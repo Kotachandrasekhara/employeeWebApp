@@ -10,16 +10,17 @@ from textblob.classifiers import NaiveBayesClassifier
 
 user_name = 'sysbitbucket'
 password = '2aTn3rB[PR"utt'
+jira = ''
 train = []
 start_time = time.time()
 options = {'server': 'http://jira.hm.com'}
 
 
-def main(my_timer: func.TimerRequest) -> None:
+def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
-    if my_timer.past_due:
+    if mytimer.past_due:
         logging.info('The timer is past due!')
         logging.info('Starting the trigger***************************************')
         
@@ -34,9 +35,9 @@ def trigger_jira() -> None:
         jira = JIRA(options, basic_auth=(f'{user_name}', f'{password}'))
 
     except BaseException as Be:
-        logging.exception("*******************************************************************")
-        print(Be)
-        logging.exception("*******************************************************************")
+        logging.exception("******************************start*************************************")
+        logging.exception(Be)
+        logging.exception("********************************end***********************************")
 
     logging.info("-----------------------------------------------------------")
     all_closed_issues = jira.search_issues(
@@ -67,7 +68,8 @@ def trigger_jira() -> None:
     else:
         cur_date = d.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         logging.info("There aren't any issues to be assigned. will try again in a 10 minute.(" + cur_date + ")")
-
+        
 
 if __name__ == '__main__':
     trigger_jira()
+
