@@ -13,7 +13,7 @@ password = '2aTn3rB[PR"utt'
 jira = ''
 train = []
 start_time = time.time()
-options = {'server': 'http://jira.hm.com'}
+options = {'server': 'https://10.60.80.151'}
 
 
 def main(mytimer: func.TimerRequest) -> None:
@@ -68,7 +68,6 @@ def trigger_jira() -> None:
     else:
         cur_date = d.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         logging.info("There aren't any issues to be assigned. will try again in a 10 minute.(" + cur_date + ")")
-        
 
 if __name__ == '__main__':
     trigger_jira()
